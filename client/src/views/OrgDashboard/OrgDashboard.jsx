@@ -59,8 +59,8 @@ export default function OrgDashboard() {
 		        					<p>Manage Galleries</p>
 		        				</div>
 		        				<div id='divider' />
-		        				<div id='manage-button'>
-		        					<p>Manage Accounts</p>
+		        				<div id='manage-button' onClick={() => navigate('/manageaccount')}>
+                                    <p>Manage Accounts</p>
 		        				</div>
 		        			</div>
 		        		</div>

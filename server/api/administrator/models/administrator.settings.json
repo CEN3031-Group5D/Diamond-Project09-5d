@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "administrators",
+  "info": {
+    "name": "administrator",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "organization": {
+      "via": "administrators",
+      "model": "organization"
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "schools": {
+      "collection": "school",
+      "via": "administrators",
+      "dominant": true
+    }
+  }
+}

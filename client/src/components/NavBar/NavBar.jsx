@@ -25,6 +25,8 @@ export default function NavBar() {
 
   const shouldShowRoute = (route) => {
     if (currentRoute === routes[route]) return false;
+    console.log(value);
+    console.log(value.role);
     return config.users[value.role].includes(route);
   };
 
@@ -99,6 +101,18 @@ export default function NavBar() {
           &nbsp; Sign Out
         </Menu.Item>
       ) : null}
+      {shouldShowRoute('orgdash') ? (
+        <Menu.Item key='9' onClick={() => handleRouteChange(routes.orgdash)}>
+          <i className='fa fa-sign-out-alt' />
+          &nbsp; orgdash
+        </Menu.Item>
+      ) : null}
+      {shouldShowRoute('createorg') ? (
+        <Menu.Item key='9' onClick={() => handleRouteChange(routes.createorg)}>
+          <i className='fa fa-sign-out-alt' />
+          &nbsp; createorg
+        </Menu.Item>
+      ) : null}
     </Menu>
   );
 
@@ -115,6 +129,8 @@ export default function NavBar() {
             ? '/student'
             : value.role === 'Researcher'
             ? '/report'
+            : value.role === 'Organization Administrator'
+            ? '/orgdash'
             : '/'
         }
       >

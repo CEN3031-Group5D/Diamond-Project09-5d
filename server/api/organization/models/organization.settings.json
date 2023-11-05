@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organizations",
+  "info": {
+    "name": "Organization",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "schools": {
+      "collection": "school",
+      "via": "organization"
+    },
+    "description": {
+      "type": "string"
+    },
+    "administrators": {
+      "via": "organization",
+      "collection": "administrator"
+    },
+    "County": {
+      "type": "string"
+    }
+  }
+}

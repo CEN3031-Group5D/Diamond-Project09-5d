@@ -51,7 +51,7 @@ export default function OrgDashboard() {
 		        				<p>{org.classrooms.length} classrooms, {org.teachers.length} teachers, {org.students.length} students</p>
 		        			</div>
 		        			<div id='card-bottom-content-container'>
-		        				<div id='manage-button' onClick={() => alert("test")}>
+		        				<div id='manage-button' onClick={() => navigate('/admindashboard')}>
 		        					<p>Manage Classrooms</p>
 		        				</div>
 		        				<div id='divider' />

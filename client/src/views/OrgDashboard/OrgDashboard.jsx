@@ -4,8 +4,9 @@ import './OrgDashboard.less';
 import { useNavigate } from 'react-router-dom';
 import { message } from 'antd';
 import DeleteOrgModal from './DeleteOrgModal';
-import { getOrganizations, getAllOrgs, updateOrgName } from "../../Utils/requests"
+import { getOrganizations, getAllOrgs, updateOrgName, getAdmin } from "../../Utils/requests"
 import { useGlobalState } from '../../Utils/userState';
+
 
 export default function OrgDashboard() {
 	const [orgs, setOrgs] = useState([]);
@@ -20,7 +21,15 @@ export default function OrgDashboard() {
     	let orgList = [];
 
     	// TODO: update to be admin-specific orgs (use Mentor/Dashboard/Dashboard.jsx as a model)
-
+		try {
+			getAdmin().then((res) => {
+				console.log(res);
+			  });
+	
+		} catch (error) {
+			console.log(error);
+		}
+		
     	getAllOrgs().then((res) => {
     	   	if (res.data) {
     	   		for (let i = 0; i < res.data.length; i++) {

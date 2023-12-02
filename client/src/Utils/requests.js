@@ -690,6 +690,14 @@ export const getClassroomWorkspace = async (id) =>
         error: 'Unable to retrive classroom workspaces',
     });
 
+export const getAdmin = async () =>
+makeRequest({
+    method: GET,
+    path: `${server}/org-managers/me`,
+    auth: true,
+    error: 'Your org manager information could not be retrieved.',
+});
+
 export const addOrganization = async (name, desc, schools) =>
     makeRequest({
         method: POST,

@@ -1,0 +1,13 @@
+{
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/org-managers/me",
+        "handler": "org-manager.me",
+        "config": {
+          "policies": ["global::isOrgManager"]
+        }
+      }
+    ]
+}
+  

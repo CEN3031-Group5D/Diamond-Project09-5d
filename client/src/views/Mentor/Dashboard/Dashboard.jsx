@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getMentor, getClassrooms } from '../../../Utils/requests';
+import { getMentor, getClassrooms, getSchool } from '../../../Utils/requests';
 import { message } from 'antd';
 import './Dashboard.less';
 import '../../AdminSchoolView/AdminSchoolDashboard.less'
@@ -18,22 +18,38 @@ export default function Dashboard() {
   const [deleteFlag, setDeleteFlag] = useState(false);
   const navigate = useNavigate();
   
-
   useEffect(() => {
     let classroomIds = [];
-    getMentor().then((res) => {
-      if (res.data) {
-        res.data.classrooms.forEach((classroom) => {
-          classroomIds.push(classroom.id);
-        });
-        getClassrooms(classroomIds).then((classrooms) => {
-          setClassrooms(classrooms);
-        });
-      } else {
-        message.error(res.err);
-        navigate('/teacherlogin');
-      }
-    });
+    if (value.name == "Classroom Manager") {
+      getMentor().then((res) => {
+        if (res.data) {
+          res.data.classrooms.forEach((classroom) => {
+            classroomIds.push(classroom.id);
+          });
+          getClassrooms(classroomIds).then((classrooms) => {
+            setClassrooms(classrooms);
+          });
+        } else {
+          message.error(res.err);
+          navigate('/teacherlogin');
+        }
+      });
+    } else if (value.name == "Organization Administrator") {
+      let schoolId = window.sessionStorage.getItem("currSchool");
+      let classroomList = [];
+
+      getSchool(schoolId).then((res) => {
+          if (res.data) {
+              console.log(res.data.classrooms.length);
+              for(let i = 0; i < res.data.classrooms.length; i++) {
+                  classroomList.push(res.data.classrooms[i]);
+              }
+              setClassrooms(classroomList);
+          } else {
+              message.error(res.err);
+          }
+      });
+    }
   }, [deleteFlag]);
 
   const handleViewClassroom = (classroomId) => {
@@ -109,7 +125,8 @@ export default function Dashboard() {
                 <DashboardDisplayCodeModal code={classroom.code} />
                 <div id='divider' />
                 <div id='student-number-container'>
-                  <h1 id='number'>{classroom.students.length}</h1>
+                  {/* placeholder count until classrooms not having students bug is resolved */}
+                  <h1 id='number'>10</h1>
                   <p id='label'>Students</p>
                 </div>
               </div>

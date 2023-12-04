@@ -767,6 +767,9 @@ export const getSchools = async () =>
         error: 'Schools could not be retrieved',
     });
 
+export const getSchoolsByID = async (ids) =>
+    Promise.all(ids.map(async (id) => (await getSchool(id)).data));
+
 export const addSchool = async (name, organization) =>
     makeRequest({
         method: POST,

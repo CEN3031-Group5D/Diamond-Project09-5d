@@ -37,6 +37,7 @@ export default function AdminSchoolDashboard() {
 
 
     const handleViewSchool = (schoolId) => {
+        window.sessionStorage.setItem("currSchool", schoolId);
         navigate('/dashboard')
     }
 

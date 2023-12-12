@@ -11,7 +11,7 @@ export default function CreateOrg() {
   const navigate = useNavigate();
   const [schools, setSchools] = useState([]);
   const [selectedSchools, setSelectedSchools] = useState([]);
-  const [isError, setIsError] = useState("");
+  const [isError, setIsError] = useState(""); // used to control dropdown status (turns red if user attempts to submit with nothing selected)
   const [newSchoolName, setNewSchoolName] = useState("");
 
   useEffect(() => {

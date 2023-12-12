@@ -4,7 +4,7 @@ import './OrgDashboard.less';
 import { useNavigate } from 'react-router-dom';
 import { message } from 'antd';
 import DeleteOrgModal from './DeleteOrgModal';
-import { getOrganizations, getAllOrgs, updateOrgName } from "../../Utils/requests"
+import { getAllOrgs, updateOrgName } from "../../Utils/requests"
 import { useGlobalState } from '../../Utils/userState';
 
 export default function OrgDashboard() {
@@ -24,9 +24,11 @@ export default function OrgDashboard() {
 		if (value.role !== 'DefaultUser') {
 			getAllOrgs().then((res) => {
 				if (res.data) {
+					// build list of orgs from fetched data
 					for (let i = 0; i < res.data.length; i++) {
 						orgList.push(res.data[i]);
 					}
+					// sort list of orgs based on user-selected sort method
 					if (sort == 'aToZ') {
 						orgList.sort(sortAtoZ);
 					} else if (sort == 'zToA') {
@@ -199,8 +201,6 @@ export default function OrgDashboard() {
      								<DeleteOrgModal 
      									orgId={org.id}
      									orgName={org.name}
-     									orgs={orgs}
-     									setOrgs={setOrgs}
      									deleteFlag={deleteFlag}
      									setDeleteFlag={setDeleteFlag}
      								/>

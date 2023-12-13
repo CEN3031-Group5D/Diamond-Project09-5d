@@ -5,7 +5,7 @@ import { deleteOrganization } from "../../Utils/requests"
 
 export default function DeleteOrgModal(props) {
     const [visible, setVisible] = useState(false);
-    const {orgId, orgName, orgs, setOrgs, deleteFlag, setDeleteFlag} = props;
+    const {orgId, orgName, deleteFlag, setDeleteFlag} = props;
     const [confirm, setConfirm] = useState('');
 
     const showModal = () => {
@@ -19,6 +19,7 @@ export default function DeleteOrgModal(props) {
 
     const handleDelete = async () => {
         if (confirm == orgName) {
+            // TODO: update to delete the associated entities contained in orgs as well (accounts, schools, etc.)
             const res = await deleteOrganization(orgId);
             if (res.data) {
                 message.success(orgName + ' has been deleted.');

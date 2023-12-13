@@ -118,15 +118,22 @@ export default function OrgDashboard() {
 			return (<span>{school.name}, </span>);
 		}
 	}
+
+	const navToSchools = (orgId) => {
+		window.sessionStorage.setItem("currOrg", orgId);
+		navigate('/admindashboard');
+	}
     
 	return (
-	    <div className='container nav-padding'>
-	        <NavBar />
+	    
+		<div className='container nav-padding'>
+	        {value === 'DefaultUser' ? message.info(`Please log in`) : null}
+			<NavBar />
 	        <div id='main-header'>Welcome {value.name}</div>
 	        <div id='org-dash-bar'>
 	        	<input
 	       			type='button'
-	       			onClick={() => navigate('/createorg')}
+	       			onClick={value.role !== 'DefaultUser' ? () => navigate('/createorg') : message.info(`Please Log In`)}
 	       			value='Create new organization'
 	        	/>
 	        	<select
@@ -143,7 +150,13 @@ export default function OrgDashboard() {
 	        </div>
 	        <div id='orgs-container'>
 	        	<div id='no-orgs-message'>
-	        		{orgs.length == 0 && <p>Looks like you don't have any organizations yet.</p>}
+				{orgs.length === 0 && (
+				<p>
+					{value.role === "DefaultUser"
+					? "Please log in to see your organizations."
+					: "Looks like you don't have any organizations yet."}
+				</p>
+				)}
 	        	</div>
 	        	<div id='dashboard-card-container'>
 	        		{orgs.map((org) => (
@@ -159,7 +172,7 @@ export default function OrgDashboard() {
 				        			<p>{org.schools.map(printSchools)}</p>
 				        		</div>
 				        		<div id='card-bottom-content-container'>
-				        			<button className='manage-btn' onClick={() => navigate('/admindashboard')}>
+				        			<button className='manage-btn' onClick={() => navToSchools(org.id)}>
 				        				<p>Manage Schools</p>
 				        			</button>
 				        			<div className='divider' />
@@ -191,8 +204,6 @@ export default function OrgDashboard() {
      								<DeleteOrgModal 
      									orgId={org.id}
      									orgName={org.name}
-     									orgs={orgs}
-     									setOrgs={setOrgs}
      									deleteFlag={deleteFlag}
      									setDeleteFlag={setDeleteFlag}
      								/>

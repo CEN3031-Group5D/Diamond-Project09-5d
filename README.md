@@ -158,22 +158,35 @@ Running the project locally follows the same instructions as above (running `doc
 
 - Admin role
   - Users can log in as Organization Administrators and have access to the admin-specific features we created.
+![Admin role dropdown](features-images/admin-role.png)
 - Organization dashboard
   - Organizations are displayed in tiles which show their name and schools, and include links to the management pages for the orgs.
+![Organization dashboard](features-images/org-dash.png)
 - Organization management (creation, deletion, editing)
   - A user can edit an organization’s name and delete it entirely. There is input validation to prevent accidental deletions. There is a form which allows users to create organizations and connect them to schools.
+![Organization creation page](features-images/create-org.png)
+![Organization edit card](features-images/edit-org.png)
+![Organization deletion modal](features-images/delete-org.png)
 - Account management (creation, deletion, sorting)
   - The accounts in an organization are displayed in a searchable and sortable list.
   - Admin can add and delete accounts.
+![List of accounts](features-images/manage-accounts.png)
+![Account creation modal](features-images/create-mentor.png)
+![Account deletion modal](features-images/delete-mentor.png)
 - School dashboard
   - Schools are displayed as cards in a tile format showing their name and there is a link to create new schools.
   - An admin can view the classrooms within the school and edit its information (name, county, state).
+![School dashboard](features-images/school-view.png)
 - School creation
   - Form allows admins to create new schools by specifying a name. The school is tied to the organization that is currently being viewed.
+![School creation page](features-images/create-school.png)
 - School Editing and Deletion
   - Edit modal on a school tile opens a modal where name, county, and state fields can be edited. Also has a button to delete which requires confirmation by typing the name of the school to prevent accidental deletion.
+![School editing modal](features-images/edit-school.png)
+![School deletion modal](features-images/delete-school.png)
 - Gallery management
   - A landing page where admin can view all the galleries within their organization.
+![Galleries dashboard](features-images/galleries-view.png)
  
 ### Outstanding work
 - Admin-specific display of organizations (in development on `Caleb_backend` branch)

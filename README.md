@@ -63,9 +63,11 @@ The development environment is composed of five servers. The first one is run wi
 ### How to update the database and server connections
 To update the database and server connections in a Strapi project with a PostgreSQL database, modify the DATABASE_URL environment variable. 
 This URL should be in the format postgres://username:password@host:port/database_name. 
-Ensure the URL reflects the new database host, port, username, password, and database name. 
+Ensure the URL reflects the new database host, port, username, password, and database name.
+
 For local development, set these details in a .env file at your project's root. 
-In a production environment, like Heroku, set DATABASE_URL in the platform's environment variable settings. 
+In a production environment, like Heroku, set DATABASE_URL in the platform's environment variable settings.
+
 After updating, test the connection by running Strapi and checking the admin panel and API endpoints
 
 ### Staging

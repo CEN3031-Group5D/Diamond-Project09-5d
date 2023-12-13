@@ -140,3 +140,39 @@ Before submitting a pull request, rebase the feature branch into the target bran
 
 - PRs to **master** should squash and merge
 - PRs to all other branches should create a merge commit
+
+## Project 9
+
+Running the project locally follows the same instructions as above (running `docker compose up` from `/` and `yarn start` from `/client`). If the server throws authentication errors when trying to access organization features, in Strapi you will need to give the Admin role permissions to create, delete, and find Organizations, Schools, and Mentors. (This information does not seem to transfer through git.)
+
+### Features added
+
+- Admin role
+  - Users can log in as Organization Administrators and have access to the admin-specific features we created.
+- Organization dashboard
+  - Organizations are displayed in tiles which show their name and schools, and include links to the management pages for the orgs.
+- Organization management (creation, deletion, editing)
+  - A user can edit an organization’s name and delete it entirely. There is input validation to prevent accidental deletions. There is a form which allows users to create organizations and connect them to schools.
+- Account management (creation, deletion, sorting)
+  - The accounts in an organization are displayed in a searchable and sortable list.
+  - Admin can add and delete accounts.
+- School dashboard
+  - Schools are displayed as cards in a tile format showing their name and there is a link to create new schools.
+  - An admin can view the classrooms within the school and edit its information (name, county, state).
+- School creation
+  - Form allows admins to create new schools by specifying a name. The school is tied to the organization that is currently being viewed.
+- School Editing and Deletion
+  - Edit modal on a school tile opens a modal where name, county, and state fields can be edited. Also has a button to delete which requires confirmation by typing the name of the school to prevent accidental deletion.
+- Gallery management
+  - A landing page where admin can view all the galleries within their organization.
+ 
+### Outstanding work
+- Admin-specific display of organizations (in development on `Caleb_backend` branch)
+- Allowing admin to access classroom dashboards (in development on `admin-access-to-schools` branch)
+- Editing and deletion of classrooms (in development)
+- Flag/report galleries and other content for admin review
+- Deleting org accounts and data recovery for org accounts
+
+### Built upon
+- Existing CASMM architecture (especially the classroom dashboard in `Mentor/Dashboard/Dashboard.jsx`)
+- Ant Design Modal and Select for deletion/editing modals (in `DeleteOrgModal.jsx`, `CreateClassroomModal.jsx`, and `EditClassroomModal.jsx`) and selecting schools dropdowns (in `ManageAccount.jsx` and `CreateOrg.jsx`)
